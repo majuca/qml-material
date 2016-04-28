@@ -22,7 +22,7 @@ Image {
     opacity: 0
 
     onAvailableChanged: {
-      var imgSource = image.source;
+      /*var imgSource = image.source;
       canvas.loadImage(String(imgSource));
       var context = canvas.getContext("2d"),
       pixelInterval = 5,
@@ -42,7 +42,7 @@ Image {
       rgba.g = Math.floor(rgba.g/count);
       rgba.b = Math.floor(rgba.b/count);
       rgba.a = Math.floor(rgba.a/count);
-      image.averageColor = Qt.rgba(rgba.r/255, rgba.g/255, rgba.b/255, rgba.a/255);
+      image.averageColor = Qt.rgba(rgba.r/255, rgba.g/255, rgba.b/255, rgba.a/255);*/
     }
   }
 }

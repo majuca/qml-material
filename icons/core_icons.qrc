@@ -8,6 +8,7 @@
 	<file alias="close.svg">navigation_close.svg</file>
 	<file alias="menu.svg">navigation_menu.svg</file>
 	<file alias="more_vert.svg">navigation_more_vert.svg</file>
+	<file alias="arrow_drop_down.svg">navigation_arrow_drop_down.svg</file>
 </qresource>
 
 </RCC>

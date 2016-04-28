@@ -31,5 +31,10 @@ Controls.TextField {
     property int characterLimit
     property bool showBorder: true
 
+    //JLG
+    property bool lightTheme: true
+    readonly property ThemePalette themePalette: lightTheme ? Theme.light : Theme.dark
+    textColor: enabled ? themePalette.textColor : themePalette.hintColor
+
     style: MaterialStyle.TextFieldStyle {}
 }

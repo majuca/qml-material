@@ -509,12 +509,18 @@ FocusScope {
     }
 
     function getCurrentTime() {
+        console.debug(internal.timePicked);
         var date = new Date(internal.timePicked)
-        if(amPmPicker.isAm && date.getHours() > 11)
-            date.setHours(date.getHours() - 12)
-        else if(!amPmPicker.isAm && date.getHours() < 11)
-            date.setHours(date.getHours() + 12)
 
+        console.debug(amPmPicker.isAm);
+        console.debug(date.getHours());
+
+        if(!prefer24Hour) {
+            if(amPmPicker.isAm && date.getHours() > 11)
+                date.setHours(date.getHours() - 12)
+            else if(!amPmPicker.isAm && date.getHours() < 11)
+                date.setHours(date.getHours() + 12)
+        }
         return date
     }
 

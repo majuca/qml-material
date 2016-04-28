@@ -26,6 +26,8 @@ RESOURCES += $$PWD/src/material.qrc \
 
 OTHER_FILES = $$PWD/README.md $$PWD/CHANGELOG.md
 
+INCLUDEPATH += $$PWD/src
+
 contains(OPTIONS, roboto) {
     RESOURCES += $$PWD/fonts/fonts.qrc
 }

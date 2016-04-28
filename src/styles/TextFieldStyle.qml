@@ -33,7 +33,8 @@ TextFieldStyle {
     placeholderTextColor: "transparent"
     selectedTextColor: "white"
     selectionColor: control.hasOwnProperty("color") ? control.color : Theme.accentColor
-    textColor: Theme.light.textColor
+    //textColor: Theme.light.textColor // JLG
+    textColor: control.themePalette.textColor// JLG
 
     background : Item {
         id: background
@@ -52,7 +53,8 @@ TextFieldStyle {
             id: underline
             color: background.hasError ? background.errorColor
                                     : control.activeFocus ? background.color
-                                                          : Theme.light.hintColor
+                                                          //: Theme.light.hintColor //JLG
+                                                            : control.themePalette.hintColor //JLG
 
             height: control.activeFocus ? 2 * Units.dp : 1 * Units.dp
             visible: background.showBorder
@@ -72,7 +74,6 @@ TextFieldStyle {
             }
         }
 
-
         Label {
             id: fieldPlaceholder
 
@@ -82,7 +83,8 @@ TextFieldStyle {
             anchors.margins: -12 * Units.dp
             color: background.hasError ? background.errorColor
                                   : control.activeFocus && control.text !== ""
-                                        ? background.color : Theme.light.hintColor
+                                        //? background.color : Theme.light.hintColor // JLG
+                                        ? background.color : control.themePalette.hintColor // JLG
 
             states: [
                 State {

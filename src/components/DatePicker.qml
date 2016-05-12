@@ -90,6 +90,7 @@ Controls.Calendar {
                 spacing: 0
 
                 Label {
+                    id:yearTitle
                     font.weight: Font.DemiBold
                     style: "body2"
                     color: Qt.rgba(1, 1, 1, 0.7)
@@ -104,6 +105,7 @@ Controls.Calendar {
                     lineHeight: 0.9
                     wrapMode: Text.Wrap
                     color: Theme.dark.textColor
+                    anchors.top:yearTitle.bottom
                     text: control.selectedDate.toLocaleString(control.__locale, "ddd, MMM dd")
                 }
                 Component.onCompleted: {

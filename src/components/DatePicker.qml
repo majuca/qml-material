@@ -390,9 +390,9 @@ Controls.Calendar {
 
                     Rectangle {
                         id: separator
-                        anchors.topMargin: - dayOfWeekHeaderRow.height - 1
-                        anchors.top: weekNumbersItem.top
-                        anchors.bottom: weekNumbersItem.bottom
+
+                        anchors.top: viewContainer.top
+                        anchors.bottom: viewContainer.bottom
 
                         width: __gridLineWidth
                         color: __verticalSeparatorColor

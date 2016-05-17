@@ -36,7 +36,7 @@ Controls.ProgressBar {
        The color for the progress circle. By default this is
        the primary color defined in \l Theme::primaryColor
      */
-    property color color: Theme.primaryColor
+    property color color: Theme.accentColor
 
     /*!
        The thickness of the progress circle's stroke,

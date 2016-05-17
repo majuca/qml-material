@@ -4,6 +4,9 @@ QT += qml quick
 android {
     QT += androidextras svg xml
 }
+ios{
+    QT += svg xml
+}
 
 HEADERS += $$PWD/src/plugin.h \
            $$PWD/src/core/device.h \

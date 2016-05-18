@@ -24,12 +24,14 @@ import QtQuick.Window 2.2
    \brief Date Picker provides a simple way to select a valid, formatted date
  */
 Controls.Calendar {
-
+    id: root
     /*!
        Set to \c true if the picker should lay itself in landscape mode
      */
     property bool isLandscape: false
     property int dayAreaBottomMargin : 0
+    property bool viewYearList: false
+
 
 //    Component.onCompleted: {
 //        if(isLandscape){
@@ -93,20 +95,39 @@ Controls.Calendar {
                     id:yearTitle
                     font.weight: Font.DemiBold
                     style: "body2"
-                    color: Qt.rgba(1, 1, 1, 0.7)
+                    font.pixelSize: viewYearList !== false ? 36 * Units.dp : (!Device.isMobile && fontInfo.size_desktop
+                                                                              ? fontInfo.size_desktop : fontInfo.size) * Units.dp
+                    color: viewYearList === false ? Qt.rgba(1, 1, 1, 0.7) : Theme.dark.textColor
                     text: control.selectedDate.toLocaleString(control.__locale, "yyyy")
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.debug("change to year")
+                            viewYearList = true;
+                        }
+                    }
                 }
 
                 Label {
                     id: dayTitle
                     font.weight: Font.DemiBold
-                    font.pixelSize: 36 * Units.dp
+                    font.pixelSize: viewYearList === false ? 36 * Units.dp : (!Device.isMobile && fontInfo.size_desktop
+                                                                              ? fontInfo.size_desktop : fontInfo.size) * Units.dp
                     Layout.fillWidth: true
                     lineHeight: 0.9
                     wrapMode: Text.Wrap
-                    color: Theme.dark.textColor
+                    color: viewYearList === false ? Theme.dark.textColor : Qt.rgba(1, 1, 1, 0.7)
                     anchors.top:yearTitle.bottom
-                    text: control.selectedDate.toLocaleString(control.__locale, "ddd, MMM dd")
+                    text: control.selectedDate.toLocaleString(control.__locale, "ddd, dd MMM")
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            console.debug("change to calendar")
+                            viewYearList = false;
+                        }
+                    }
                 }
                 Component.onCompleted: {
                     landscapeChanged()
@@ -144,7 +165,7 @@ Controls.Calendar {
                 anchors.centerIn: parent
                 color: styleData.selected
                        ? "white" : styleData.today
-						 ? Theme.accentColor : "black"
+                         ? Theme.accentColor : "black"
             }
         }
 
@@ -183,6 +204,7 @@ Controls.Calendar {
                 id: container
                 anchors.fill: parent
                 anchors.margins: control.frameVisible ? 1 : 0
+
 
                 Loader {
                     id: backgroundLoader
@@ -252,6 +274,7 @@ Controls.Calendar {
                         anchors.left: parent.left
                         anchors.leftMargin: 16 * Units.dp
                         onClicked: control.showPreviousMonth()
+                        visible: viewYearList === false
                     }
 
                     IconButton {
@@ -262,6 +285,7 @@ Controls.Calendar {
                         anchors.right: parent.right
                         anchors.rightMargin: 16 * Units.dp
                         onClicked: control.showNextMonth()
+                        visible: viewYearList === false
                     }
 
                     Label {
@@ -272,6 +296,7 @@ Controls.Calendar {
                         font.weight: Font.Black
                         style: "subheading"
                         text: control.__locale.standaloneMonthName(control.visibleMonth) + " " + control.visibleYear
+                        visible: viewYearList === false
                     }
 
                     Row {
@@ -281,7 +306,7 @@ Controls.Calendar {
                         anchors.leftMargin: (control.weekNumbersVisible ? weekNumbersItem.width : 0) + 8 * Units.dp
                         anchors.right: parent.right
                         anchors.rightMargin: 8 * Units.dp
-
+                        visible: viewYearList === false
                         spacing: gridVisible ? __gridLineWidth : 0
 
                         Repeater {
@@ -311,7 +336,7 @@ Controls.Calendar {
                     id: topGridLine
                     color: __horizontalSeparatorColor
                     height: __gridLineWidth
-                    visible: gridVisible
+                    visible: gridVisible && viewYearList === false
                     anchors.top: dayOfWeekHeaderRow.bottom
 
 
@@ -354,7 +379,7 @@ Controls.Calendar {
                     Component.onCompleted: landscapeChanged()
                     Column {
                         id: weekNumbersItem
-                        visible: control.weekNumbersVisible
+                        visible: control.weekNumbersVisible && viewYearList === false
                         height: viewContainer.height - dayAreaBottomMargin
                         spacing: gridVisible ? __gridLineWidth : 0
                         Repeater {
@@ -396,13 +421,13 @@ Controls.Calendar {
 
                         width: __gridLineWidth
                         color: __verticalSeparatorColor
-                        visible: control.weekNumbersVisible
+                        visible: control.weekNumbersVisible && viewYearList === false
                     }
 
                     // Contains the grid lines and the grid itself.
                     Item {
                         id: viewContainer
-
+                        visible: viewYearList === false
 
 
                         property bool landscape : isLandscape
@@ -594,6 +619,92 @@ Controls.Calendar {
                             }
                         }
                     }
+                }
+
+                ListView {
+                    id:yearList
+                    property bool landscape : isLandscape
+                    height: parent.height - anchors.topMargin - (dp(32)) - dp(16)
+                    width: parent.width
+                    anchors.top:parent.top
+                    anchors.left:parent.left
+                    clip: true
+                    visible: viewYearList !== false
+                    spacing: dp(16)
+                    highlightMoveVelocity: -1
+                    focus: true
+                    function getYears() {
+                        var date = new Date();
+                        var maxYear = date.getFullYear() + 20
+                        if(maxYear > root.maximumDate.getFullYear()) {
+                            maxYear = root.maximumDate.getFullYear();
+                        }
+
+                        for(var i=1920; i <= maxYear; i++ ) {
+                            var data = {"year": i}
+                            yearList.model.append(data);
+                        }
+
+                        yearList.currentIndex =  date.getFullYear()-1920;
+                        //highlightMoveVelocity = 400
+
+                    }
+                    model: ListModel {}
+
+
+
+                    highlight : Item {
+                        width: dp(64)
+                        height: dp(64)
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width: dp(64)
+                            height: dp(64)
+                            color: Theme.accentColor
+                            radius: height/2
+                        }
+                    }
+
+                    delegate: Label {
+                        width: yearList.width
+                        horizontalAlignment: Text.AlignHCenter
+                        text:modelData
+                        style:"headline"
+                        color: yearList.currentIndex != index ? Theme.light.textColor : "white"
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                yearList.currentIndex = index
+                                var date = root.selectedDate;
+                                date.setYear(index+1920)
+                                root.selectedDate = date;
+                                console.debug(root.selectedDate)
+
+                            }
+                        }
+
+                    }
+
+                    onCurrentItemChanged: console.debug(yearList.currentIndex)
+
+                    onLandscapeChanged: {
+                        if(isLandscape){
+                            width = parent.width - (calendarWidth / 3)
+                            anchors.topMargin = dp(16)
+                            anchors.leftMargin = calendarWidth / 3
+
+                        }else{
+                            width = calendarWidth
+                            anchors.leftMargin = 0;
+                            anchors.topMargin = (96 * Units.dp) + dp(16);
+                        }
+                    }
+
+                    Component.onCompleted: {
+                        landscapeChanged();
+                        getYears()
+                    }
+
                 }
             }
         }

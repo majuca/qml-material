@@ -50,6 +50,9 @@ PopupBase {
 
     readonly property Action action: action
 
+    property alias actionName: action.name
+
+
     onEnabledChanged: {
         if (!enabled)
             close()

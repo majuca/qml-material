@@ -292,7 +292,7 @@ Item {
             delegate: IconButton {
                 id: iconAction
 
-                objectName: "action/" + action.objectName
+                objectName: action ?"action/" + action.objectName : ""
 
                 action: __internal.visibleActions[index]
 

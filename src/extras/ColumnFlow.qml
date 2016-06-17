@@ -125,9 +125,11 @@ Item {
             }
 
             // add the element to the shortest column
-            columnFlow.children[i].anchors.top = columnFlow.children[lastItem[newColumn]].bottom
-            columnFlow.children[i].anchors.left = columnFlow.children[lastItem[newColumn]].left
-            columnFlow.children[i].anchors.right = columnFlow.children[lastItem[newColumn]].right
+            if(typeof columnFlow.children[lastItem[newColumn]] !="undefined"){
+                columnFlow.children[i].anchors.top = columnFlow.children[lastItem[newColumn]].bottom
+                columnFlow.children[i].anchors.left = columnFlow.children[lastItem[newColumn]].left
+                columnFlow.children[i].anchors.right = columnFlow.children[lastItem[newColumn]].right
+            }
 
             lastItem[newColumn] = i
             columnHeights[newColumn] += columnFlow.children[i].height

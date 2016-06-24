@@ -42,6 +42,25 @@ FocusScope {
      */
     property int bottomMargin: 0
 
+    readonly property date today: new Date();
+    property string selectedTime :Qt.formatDateTime(new Date(),"HH:mm:ss")
+
+
+    function _setNewSelectedTime(){
+        selectedTime=Qt.formatDateTime(internal.timePicked,"HH:mm:ss")
+    }
+
+    function _setTime(){
+        if(internal.completed){
+         internal.timePicked= new Date(today.getFullYear(),today.getMonth()-1,today.getDay(),selectedTime.split(":")[0],selectedTime.split(":")[1],selectedTime.split(":")[2])
+        }
+    }
+
+    onSelectedTimeChanged: {
+
+        _setTime()
+    }
+
     Keys.onUpPressed: {
         var date = internal.timePicked
 
@@ -90,7 +109,7 @@ FocusScope {
     QtObject {
         id: internal
         property bool resetFlag: false
-        property date timePicked
+        property date timePicked:new Date()
         property bool completed: false
 
         onTimePickedChanged: {
@@ -107,14 +126,17 @@ FocusScope {
 
                 var minutes = internal.timePicked.getMinutes()
                 minutesPathView.currentIndex = minutes
+
+                _setNewSelectedTime();
             }
         }
     }
 
     Component.onCompleted: {
         internal.completed = true
-        internal.timePicked = new Date(Date.now())
-                forceActiveFocus()
+
+//        forceActiveFocus()
+        _setTime()
     }
 
     Column {
@@ -532,7 +554,9 @@ FocusScope {
         isHours = true
         internal.resetFlag = false
         amPmPicker.isAm = true
-        internal.timePicked = new Date(Date.now())
+        selectedTime=Qt.formatDateTime(new Date(),"HH:mm:ss")
+        internal.timePicked = new Date(selectedTime)
+
     }
 
     /*!

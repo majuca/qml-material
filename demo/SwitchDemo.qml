@@ -1,6 +1,8 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Material 0.2
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 
 ColumnLayout {
     spacing: 0
@@ -22,47 +24,50 @@ ColumnLayout {
                 columnSpacing: dp(40)
                 columns: 3
 
+                property int themeStyle:  index == 0 ? Material.Light :Material.Dark
+
+
                 // Empty filler
                 Item { width: 1; height: 1 }
 
                 Label {
                     text: "Normal"
-                    color: index == 0 ? Theme.light.textColor : Theme.dark.textColor
+                    Material.theme:parent.themeStyle
                 }
 
                 Label {
                     text: "Disabled"
-                    color: index == 0 ? Theme.light.textColor : Theme.dark.textColor
+                    Material.theme:parent.themeStyle
                 }
 
                 Label {
                     text: "On"
-                    color: index == 0 ? Theme.light.textColor : Theme.dark.textColor
+                    Material.theme:parent.themeStyle
                 }
 
                 Switch {
                     checked: true
-                    darkBackground: index == 1
+                    Material.theme:parent.themeStyle
                 }
 
                 Switch {
                     checked: true
                     enabled: false
-                    darkBackground: index == 1
+                    Material.theme:parent.themeStyle
                 }
 
                 Label {
                     text: "Off"
-                    color: index == 0 ? Theme.light.textColor : Theme.dark.textColor
+                    Material.theme:parent.themeStyle
                 }
 
                 Switch {
-                    darkBackground: index == 1
+                    Material.theme:parent.themeStyle
                 }
 
                 Switch {
                     enabled: false
-                    darkBackground: index == 1
+                    Material.theme:parent.themeStyle
                 }
             }
         }

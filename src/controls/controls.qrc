@@ -5,7 +5,6 @@
         <file>Label.qml</file>
         <file>ProgressBar.qml</file>
         <file>Slider.qml</file>
-        <file>Switch.qml</file>
         <file>Tab.qml</file>
         <file>TextField.qml</file>
     </qresource>

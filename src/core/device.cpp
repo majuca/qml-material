@@ -85,6 +85,8 @@ QString Device::iconName() const
         case Unknown:
             return "hardware/computer";
     }
+
+    return "hardware/computer";
 }
 
 bool Device::isPortrait() const
@@ -142,8 +144,7 @@ void Device::screenChanged()
     if (m_screen)
         m_screen->disconnect(this);
 
-    QGuiApplication *app = (QGuiApplication *) QGuiApplication::instance();
-    m_screen = app->primaryScreen();
+    m_screen = qApp->primaryScreen();
 
     connect(m_screen, &QScreen::geometryChanged, this, &Device::geometryChanged);
 

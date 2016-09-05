@@ -20,10 +20,8 @@ Wave 0.1 Wave.qml
 # Controls
 Action 0.1 Action.qml
 Button 0.1 Button.qml
-CheckBox 0.1 CheckBox.qml
 Label 0.1 Label.qml
 ProgressBar 0.1 ProgressBar.qml
-RadioButton 0.1 RadioButton.qml
 Slider 0.1 Slider.qml
 Switch 0.1 Switch.qml
 Tab 0.1 Tab.qml

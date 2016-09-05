@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "plugin.h"
+#include <QQuickStyle>
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    QQuickStyle::setStyle("Material");
     MaterialPlugin qmlMaterial;
     qmlMaterial.registerTypes("Material");
 

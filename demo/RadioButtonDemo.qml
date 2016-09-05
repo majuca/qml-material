@@ -1,7 +1,8 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.3 as QuickControls
 import Material 0.2
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 
 ColumnLayout {
     spacing: 0
@@ -16,6 +17,7 @@ ColumnLayout {
             Layout.minimumWidth: grid.width + dp(80)
             color: index == 0 ? "#EEE" : "#333"
 
+            ButtonGroup { id: optionGroup}
             GridLayout {
                 id: grid
                 anchors.centerIn: parent
@@ -23,46 +25,44 @@ ColumnLayout {
                 columnSpacing: dp(20)
                 columns: 2
 
-                QuickControls.ExclusiveGroup { id: optionGroup }
+                property int themeStyle:  index == 0 ? Material.Light :Material.Dark
 
                 Label {
                     Layout.alignment : Qt.AlignHCenter
                     text: "Normal"
-                    color: index == 0 ? Theme.light.textColor : Theme.dark.textColor
+                    Material.theme:parent.themeStyle
                 }
 
                 Label {
                     Layout.alignment : Qt.AlignHCenter
                     text: "Disabled"
-                    color: index == 0 ? Theme.light.textColor : Theme.dark.textColor
+                    Material.theme:parent.themeStyle
                 }
 
                 RadioButton {
                     checked: true
                     text: "Option 1"
-                    darkBackground: index == 1
-                    canToggle: true
-                    exclusiveGroup: optionGroup
+                    Material.theme:parent.themeStyle
+                    ButtonGroup.group: optionGroup
                 }
 
                 RadioButton {
                     checked: true
                     enabled: false
                     text: "Disabled"
-                    darkBackground: index == 1
+                    Material.theme:parent.themeStyle
                 }
 
                 RadioButton {
                     text: "Option 2"
-                    darkBackground: index == 1
-                    canToggle: true
-                    exclusiveGroup: optionGroup
+                    Material.theme:parent.themeStyle
+                    ButtonGroup.group: optionGroup
                 }
 
                 RadioButton {
                     enabled: false
                     text: "Disabled"
-                    darkBackground: index == 1
+                    Material.theme:parent.themeStyle
                 }
             }
         }

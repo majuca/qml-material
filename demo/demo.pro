@@ -7,18 +7,18 @@ RESOURCES += demo.qrc icons/icons.qrc
 
 include(../material.pri)
 
-#win32 {
+win32 {
+    CONFIG+=windeployqt
+    CONFIG( debug, debug|release ) {
+        # debug
+        DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}.exe))
+    } else {
+        # release
+        DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}.exe))
+    }
 
-#    CONFIG( debug, debug|release ) {
-#        # debug
-#        DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}.exe))
-#    } else {
-#        # release
-#        DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}.exe))
-#    }
-
-#    # Use += instead of = if you use multiple QMAKE_POST_LINKs
-#    QMAKE_POST_LINK = windeployqt $${DEPLOY_TARGET}
-#}
+    # Use += instead of = if you use multiple QMAKE_POST_LINKs
+    QMAKE_POST_LINK = windeployqt $${DEPLOY_TARGET}
+}
 
 

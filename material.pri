@@ -1,5 +1,5 @@
 CONFIG += c++11
-QT += qml quick
+QT += qml quick quickcontrols2
 
 android {
     QT += androidextras svg xml

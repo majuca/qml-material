@@ -22,8 +22,6 @@ ApplicationWindow {
     Material.accent: Material.Red
     Material.theme: Material.Light
     Material.primary: Material.Blue
-//    Material.foreground: "black"
-
 
     property var styles: [
             "Custom Icons", "Color Palette", "Typography"

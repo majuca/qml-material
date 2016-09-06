@@ -93,7 +93,6 @@ Item {
         Button {
             text: "Show alert without title bar"
             anchors.horizontalCenter: parent.horizontalCenter
-            elevation: 1
             onClicked: {
                 alertNoTitleBar.show()
             }
@@ -102,7 +101,6 @@ Item {
         Button {
             text: "Show alert with title bar"
             anchors.horizontalCenter: parent.horizontalCenter
-            elevation: 1
             onClicked: {
                 alertWithTitleBar.show()
             }
@@ -111,7 +109,6 @@ Item {
         Button {
             text: "Show text field dialog"
             anchors.horizontalCenter: parent.horizontalCenter
-            elevation: 1
             onClicked: {
                 textFieldDialog.show()
             }
@@ -120,7 +117,6 @@ Item {
         Button {
             text: "Show scrolling dialog"
             anchors.horizontalCenter: parent.horizontalCenter
-            elevation: 1
             onClicked: {
                 scrollingDialog.show()
             }

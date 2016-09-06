@@ -8,8 +8,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import QtQuick 2.4
-import QtQuick.Controls 1.3 as Controls
+import QtQuick 2.6
+import QtQuick.Controls 2.0 as Controls
+import QtQuick.Controls.Material 2.0
 import QtQuick.Window 2.2
 import Material 0.3
 import Material.Extras 0.1
@@ -68,24 +69,6 @@ Controls.ApplicationWindow {
        The \l PageStack used for controlling pages and transitions between pages.
      */
     property alias pageStack: __pageStack
-
-    /*!
-       \qmlproperty AppTheme theme
-
-       A grouped property that allows the application to customize the the primary color, the
-       primary dark color, and the accent color. See \l Theme for more details.
-     */
-    property alias theme: __theme
-
-    AppTheme {
-        id: __theme
-    }
-
-    PlatformExtensions {
-        id: platformExtensions
-        decorationColor: __toolbar.decorationColor
-        window: app
-    }
 
     PageStack {
         id: __pageStack

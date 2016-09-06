@@ -57,15 +57,10 @@ View {
 
     opacity: page && page.actionBar.hidden ? 0 : 1
 
-    backgroundColor: {
-        console.debug("page:" + page);
-        console.debug("page.actionBar.backgroundColor.a:" + page.actionBar.backgroundColor.a);
-        console.debug("page.backgroundColor:" + page.backgroundColor);
-        console.debug("page.actionBar.backgroundColor:" + page.actionBar.backgroundColor);
-        page ? page.actionBar.backgroundColor.a === 0
+    backgroundColor:page ? page.actionBar.backgroundColor.a === 0
                             ? page.backgroundColor : page.actionBar.backgroundColor
                           : Material.primary
-    }
+
 
     implicitHeight: 1 * Device.gridUnit * Units.dp
     height: targetHeight

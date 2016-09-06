@@ -11,9 +11,7 @@
 import QtQuick 2.6
 import QtQuick.Controls 2.0 as Controls
 import QtQuick.Controls.Material 2.0
-import QtQuick.Window 2.2
 import Material 0.3
-import Material.Extras 0.1
 
 /*!
    \qmltype ApplicationWindow
@@ -111,15 +109,11 @@ Controls.ApplicationWindow {
     // Units
 
     function dp(dp) {
-        return dp * Units.dp
+        return dp;
     }
 
     function gu(gu) {
-        return units.gu(gu)
-    }
-
-    UnitsHelper {
-        id: units
+        return gu;
     }
 
     Component.onCompleted: {

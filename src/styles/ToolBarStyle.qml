@@ -11,6 +11,7 @@
 import QtQuick 2.4
 import QtQuick.Controls.Styles 1.3
 import Material 0.3
+import QtQuick.Controls.Material 2.0
 
 ToolBarStyle {
 	padding {
@@ -25,6 +26,6 @@ ToolBarStyle {
         fullWidth: true
         elevation: 2
 
-        backgroundColor: Theme.primaryColor
+        backgroundColor: Material.primary
     }
 }

@@ -13,7 +13,7 @@ ApplicationWindow {
     visible: true
 
     theme {
-        primaryColor: "blue"
+        primaryColor: "green"
         accentColor: "red"
         tabHighlightColor: "white"
     }
@@ -21,7 +21,7 @@ ApplicationWindow {
 
     Material.accent: Material.Red
     Material.theme: Material.Light
-    Material.primary: Material.Blue
+    Material.primary: Material.Green
 
     property var styles: [
             "Custom Icons", "Color Palette", "Typography"

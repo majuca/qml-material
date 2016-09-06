@@ -1,7 +1,8 @@
 import QtQuick 2.4
-import QtQuick.Controls 1.3 as QuickControls
 import Material 0.2
 import Material.Extras 0.1
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 
 Item {
 
@@ -44,46 +45,44 @@ Item {
         id: scrollingDialog
         title: "Phone ringtone"
 
-        QuickControls.ExclusiveGroup {
-            id: optionGroup
-        }
+        ButtonGroup { id: optionGroup}
 
         RadioButton {
             text: "None"
             checked: true
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Callisto"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Dione"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Ganymede"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Hangouts Call"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Luna"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Oberon"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Phobos"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
         RadioButton {
             text: "Pyxis"
-            exclusiveGroup: optionGroup
+            ButtonGroup.group: optionGroup
         }
     }
 

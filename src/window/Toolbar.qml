@@ -12,7 +12,7 @@ import QtQuick 2.4
 import QtQuick.Controls 1.3 as Controls
 import QtQuick.Layouts 1.1
 import Material 0.3
-
+import QtQuick.Controls.Material 2.0
 
 /*!
    \qmltype Toolbar
@@ -57,9 +57,15 @@ View {
 
     opacity: page && page.actionBar.hidden ? 0 : 1
 
-    backgroundColor: page ? page.actionBar.backgroundColor.a === 0
+    backgroundColor: {
+        console.debug("page:" + page);
+        console.debug("page.actionBar.backgroundColor.a:" + page.actionBar.backgroundColor.a);
+        console.debug("page.backgroundColor:" + page.backgroundColor);
+        console.debug("page.actionBar.backgroundColor:" + page.actionBar.backgroundColor);
+        page ? page.actionBar.backgroundColor.a === 0
                             ? page.backgroundColor : page.actionBar.backgroundColor
-                          : Theme.primaryColor
+                          : Material.primary
+    }
 
     implicitHeight: 1 * Device.gridUnit * Units.dp
     height: targetHeight
@@ -121,7 +127,7 @@ View {
                ? Qt.darker(page.rightSidebar.actionBar.backgroundColor,1).a === 0
                  ? page.rightSidebar.color
                  : page.rightSidebar.actionBar.backgroundColor
-               : Theme.primaryColor
+               : Material.primary
     }
 
     Controls.StackView {

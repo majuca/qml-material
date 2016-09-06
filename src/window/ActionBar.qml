@@ -13,6 +13,7 @@ import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Material 0.3
 import Material.ListItems 0.1 as ListItem
+import QtQuick.Controls.Material 2.0
 
 /*!
    \qmltype ActionBar
@@ -71,7 +72,7 @@ Item {
        The background color for the toolbar when the action bar's page is active.
        By default this is the primary color defined in \l Theme::primaryColor
      */
-    property color backgroundColor: Theme.primaryColor
+    property color backgroundColor: Material.primary
 
     /*!
        \qmlproperty Item customContent

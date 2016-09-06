@@ -123,47 +123,7 @@ Controls.ApplicationWindow {
     width: dp(800)
     height: dp(600)
 
-    Dialog {
-        id: errorDialog
 
-        property var promise
-
-        positiveButtonText: "Retry"
-
-        onAccepted: {
-            promise.resolve()
-            promise = null
-        }
-
-        onRejected: {
-            promise.reject()
-            promise = null
-        }
-    }
-
-    /*!
-       Show an error in a dialog, with the specified secondary button text (defaulting to "Close")
-       and an optional retry button.
-
-       Returns a promise which will be resolved if the user taps retry and rejected if the user
-       cancels the dialog.
-     */
-    function showError(title, text, secondaryButtonText, retry) {
-        if (errorDialog.promise) {
-            errorDialog.promise.reject()
-            errorDialog.promise = null
-        }
-
-        errorDialog.negativeButtonText = secondaryButtonText ? secondaryButtonText : "Close"
-        errorDialog.positiveButton.visible = retry || false
-
-        errorDialog.promise = new Promises.Promise()
-        errorDialog.title = title
-        errorDialog.text = text
-        errorDialog.open()
-
-        return errorDialog.promise
-    }
 
     // Units
 

@@ -32,7 +32,7 @@ Controls.TextField {
 
     font {
         family: echoMode == TextInput.Password ? "Default" : "Roboto"
-        pixelSize: 16
+
     }
 
     Label {

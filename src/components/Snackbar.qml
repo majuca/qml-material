@@ -9,7 +9,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import QtQuick 2.4
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 import QtQuick.Layouts 1.1
 import Material 0.3
 
@@ -104,11 +106,9 @@ View {
         }
 
         Button {
-            id: snackButton
-            textColor: snackbar.buttonColor
+            id: snackButton            
             visible: snackbar.buttonText != ""
             text: snackbar.buttonText
-            context: "snackbar"
             width: visible ? implicitWidth : 0
             onClicked: snackbar.clicked()
         }

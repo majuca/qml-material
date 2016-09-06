@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/Material">
         <file>Action.qml</file>
-        <file>Button.qml</file>
         <file>Label.qml</file>
         <file>ProgressBar.qml</file>
         <file>Slider.qml</file>

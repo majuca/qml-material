@@ -19,7 +19,6 @@ Wave 0.1 Wave.qml
 
 # Controls
 Action 0.1 Action.qml
-Button 0.1 Button.qml
 Label 0.1 Label.qml
 ProgressBar 0.1 ProgressBar.qml
 Slider 0.1 Slider.qml

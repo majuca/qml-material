@@ -1,4 +1,6 @@
-import QtQuick 2.4
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 import Material 0.2
 import QtQuick.Controls 1.3 as Controls
 
@@ -16,14 +18,12 @@ Item {
 
         Button {
             text: "Raised Button"
-            elevation: 1
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: snackbar.open("This is a snackbar")
         }
 
         Button {
             text: "Disabled Raised Button"
-            elevation: 1
             enabled: false
             anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -32,7 +32,6 @@ Item {
             text: "Wide Button"
 
             width: dp(200)
-            elevation: 1
             anchors.horizontalCenter: parent.horizontalCenter
 
             onClicked: snackbar.open("That button is wide, and so is this snackbar!")
@@ -40,9 +39,7 @@ Item {
 
         Button {
             id: focusableButton
-            text: "Focusable with really long text"
-            elevation: 1
-            activeFocusOnPress: true
+            text: "Focusable with really long text"            
             anchors.horizontalCenter: parent.horizontalCenter
 
             onClicked: snackbar.open("The text is really very very very very very long and now it needs to wrap, so this should show as two lines!")
@@ -50,17 +47,13 @@ Item {
 
         Button {
             text: "Colored button"
-            textColor: Theme.accentColor
             anchors.horizontalCenter: parent.horizontalCenter
-
+            highlighted: true
             onClicked: snackbar.open("That button is colored!")
         }
 
         Button {
             text: "Focusable button #2"
-            elevation: 1
-            activeFocusOnPress: true
-            backgroundColor: Theme.primaryColor
             anchors.horizontalCenter: parent.horizontalCenter
 
             onClicked: snackbar.open("That button is colored!")

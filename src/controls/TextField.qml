@@ -10,10 +10,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import QtQuick 2.4
-import QtQuick.Controls 1.3 as Controls
-import QtQuick.Controls.Styles.Material 0.1 as MaterialStyle
-import Material 0.3
+import QtQuick 2.6
+import QtQuick.Controls 2.0 as Controls
+import QtQuick.Controls.Material 2.0
+import QtQuick.Layouts 1.1
 
 /*!
    \qmltype TextField
@@ -22,19 +22,94 @@ import Material 0.3
    \brief A single-line text input control.
  */
 Controls.TextField {
-
-    property color color: Theme.accentColor
-    property color errorColor: Palette.colors["red"]["500"]
+    id: textField
+    property color color: Material.accent
+    property color errorColor: Material.color(Material.Red)
     property string helperText
     property bool floatingLabel: false
     property bool hasError: characterLimit && length > characterLimit
-    property int characterLimit
-    property bool showBorder: true
+    property int characterLimit : 0
 
-    //JLG
-    property bool lightTheme: true
-    readonly property ThemePalette themePalette: lightTheme ? Theme.light : Theme.dark
-    textColor: enabled ? themePalette.textColor : themePalette.hintColor
+    font {
+        family: echoMode == TextInput.Password ? "Default" : "Roboto"
+        pixelSize: 16
+    }
 
-    style: MaterialStyle.TextFieldStyle {}
+    Label {
+        id: fieldPlaceholder
+        anchors.verticalCenter: parent.verticalCenter
+        text: placeholderText
+        font.pixelSize: parent.font.pixelSize
+        visible: textField.text.length > 0 && floatingLabel
+        anchors.topMargin: -4
+        color: parent.hasError ? parent.errorColor : parent.color
+
+        states: [
+            State {
+                name: "floating"
+                when: textField.text.length > 0 && floatingLabel
+                AnchorChanges {
+                    target: fieldPlaceholder
+                    anchors.verticalCenter: undefined
+                    anchors.top: parent.top
+                }
+                PropertyChanges {
+                    target: fieldPlaceholder
+                    font.pixelSize: 12
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                id: floatingTransition
+                enabled: false
+                AnchorAnimation {
+                    duration: 200
+                }
+                NumberAnimation {
+                    duration: 200
+                    property: "font.pixelSize"
+                }
+            }
+        ]
+
+        Component.onCompleted: floatingTransition.enabled = true
+    }
+
+    RowLayout {
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            bottomMargin: -10
+        }
+
+        Label {
+            id: helperTextLabel
+            visible: textField.helperText
+            text: textField.helperText
+            font.pixelSize: 12
+            color: textField.hasError ? textField.errorColor : Material.foreground
+
+            Behavior on color {
+                ColorAnimation { duration: 200 }
+            }
+        }
+
+        Label {
+            id: charLimitLabel
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            visible: textField.characterLimit
+            text: textField.text.length + " / " + textField.characterLimit
+            font.pixelSize: 12
+            color: textField.hasError ? textField.errorColor : textField.color
+            horizontalAlignment: Text.AlignLeft
+
+            Behavior on color {
+                ColorAnimation { duration: 200 }
+            }
+        }
+    }
+
 }

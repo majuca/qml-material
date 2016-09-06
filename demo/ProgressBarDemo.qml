@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.1
 import Material 0.2
+import QtQuick.Controls.Material 2.0
 
 Item {
     implicitHeight: grid.implicitHeight + dp(40)
@@ -17,7 +18,7 @@ Item {
 
         ProgressBar {
             Layout.fillWidth: true
-            color: theme.accentColor
+            color: Material.accentColor
 
             SequentialAnimation on value {
                 running: true
@@ -39,7 +40,7 @@ Item {
 
         ProgressBar {
             Layout.fillWidth: true
-            color: theme.accentColor
+            color: Material.accentColor
             indeterminate: true
         }
 

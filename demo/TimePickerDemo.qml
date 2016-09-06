@@ -1,4 +1,6 @@
-import QtQuick 2.4
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 import Material 0.2
 
 
@@ -19,7 +21,6 @@ Item {
         Button {
             text: "Show Time Picker Dialog"
             anchors.horizontalCenter: parent.horizontalCenter
-            elevation: 1
             onClicked: {
                 timePicker.show()
             }

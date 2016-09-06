@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/QtQuick/Controls/Styles/Material">
-        <file>ApplicationWindowStyle.qml</file>
         <file>ProgressBarStyle.qml</file>
         <file>SliderStyle.qml</file>
         <file>ToolBarStyle.qml</file>

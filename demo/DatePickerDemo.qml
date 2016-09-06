@@ -1,4 +1,6 @@
-import QtQuick 2.4
+import QtQuick 2.6
+import QtQuick.Controls 2.0
+import QtQuick.Controls.Material 2.0
 import QtQuick.Layouts 1.1
 import Material 0.2
 import Material.ListItems 0.1 as ListItem
@@ -40,7 +42,6 @@ ColumnLayout {
         Button {
             Layout.alignment: Qt.AlignCenter
             text: "Show DatePicker Dialog"
-            elevation: 1
             onClicked: {
                 datePickerDialog.show()
             }
@@ -49,7 +50,6 @@ ColumnLayout {
         Button {
             Layout.alignment: Qt.AlignCenter
             text: "Show Landscape DatePicker Dialog"
-            elevation: 1
             onClicked: {
                 landscapeDatePickerDialog.show()
             }

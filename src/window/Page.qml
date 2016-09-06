@@ -11,6 +11,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 1.3 as Controls
 import Material 0.3
+import QtQuick.Controls.Material 2.0
 
 /*!
    \qmltype Page
@@ -88,7 +89,7 @@ FocusScope {
        The background color of the page. Defaults to the global background color
        defined in \l Theme::backgroundColor
      */
-    property color backgroundColor: Theme.backgroundColor
+    property color backgroundColor: Material.background
 
     /*!
        \internal

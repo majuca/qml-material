@@ -12,11 +12,11 @@ ApplicationWindow {
     // Necessary when loading the window from C++
     visible: true
 
-    theme {
+    /*theme {
         primaryColor: "green"
         accentColor: "red"
         tabHighlightColor: "white"
-    }
+    }*/
 
 
     Material.accent: Material.Red
